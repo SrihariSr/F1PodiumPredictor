@@ -308,7 +308,7 @@ def collect_all_data(years: list[int] = YEARS) -> pd.DataFrame:
                 )
 
             all_data.append(merged)
-            time.sleep(10)  # rate-limit - pause between rounds
+            time.sleep(5)
 
     if not all_data:
         print("No data collected!")

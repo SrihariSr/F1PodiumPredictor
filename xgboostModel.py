@@ -24,8 +24,7 @@ FEATURE_COLUMNS = [
 TARGET_COL = "IsPodium"
 
 
-# ─── Metrics ─────────────────────────────────────────────────────────────────
-
+# Metrics
 def compute_metrics(y_true, y_pred_probs, threshold=0.5):
     y_pred = (y_pred_probs >= threshold).astype(int)
     tp = int(np.sum((y_pred == 1) & (y_true == 1)))
@@ -40,7 +39,7 @@ def compute_metrics(y_true, y_pred_probs, threshold=0.5):
             "f1": f1, "tp": tp, "fp": fp, "fn": fn, "tn": tn}
 
 
-# ─── Main ────────────────────────────────────────────────────────────────────
+# Main
 
 if __name__ == "__main__":
     print("XGBoost Model Training")

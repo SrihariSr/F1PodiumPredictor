@@ -558,6 +558,78 @@ RACES_2026 = [
     ],
     "actual_podium": ["ANT", "PIA", "LEC"],
 },
+{
+    "circuit": "Miami",
+    "round": 4,
+    "weather": {
+        "air_temp": 26,     # current 26°C, high of 27°C
+        "track_temp": 35,   # lower than yesterday due to cloud cover
+        "humidity": 79,     # current reading from AccuWeather
+        "wind_speed": 1.3,  # 3 mph = 1.3 m/s (light winds)
+        "rainfall": 1,      # 90% chance of rain, keep at 1
+    },
+    "qualifying": [
+        {"driver": "ANT", "team": "Mercedes",      "grid_position": 1,  "q_time_sec": 87.798},
+        {"driver": "VER", "team": "Red Bull",       "grid_position": 2,  "q_time_sec": 87.964},
+        {"driver": "LEC", "team": "Ferrari",        "grid_position": 3,  "q_time_sec": 88.143},
+        {"driver": "NOR", "team": "McLaren",        "grid_position": 4,  "q_time_sec": 88.183},
+        {"driver": "RUS", "team": "Mercedes",       "grid_position": 5,  "q_time_sec": 88.197},
+        {"driver": "HAM", "team": "Ferrari",        "grid_position": 6,  "q_time_sec": 88.319},
+        {"driver": "PIA", "team": "McLaren",        "grid_position": 7,  "q_time_sec": 88.500},
+        {"driver": "COL", "team": "Alpine",         "grid_position": 8,  "q_time_sec": 88.762},
+        {"driver": "HAD", "team": "Racing Bulls",   "grid_position": 9,  "q_time_sec": 88.789},
+        {"driver": "GAS", "team": "Alpine",         "grid_position": 10, "q_time_sec": 88.810},
+        {"driver": "HUL", "team": "Audi",           "grid_position": 11, "q_time_sec": 89.121},
+        {"driver": "LAW", "team": "Racing Bulls",   "grid_position": 12, "q_time_sec": 89.181},
+        {"driver": "BEA", "team": "Haas",           "grid_position": 13, "q_time_sec": 89.249},
+        {"driver": "SAI", "team": "Williams",       "grid_position": 14, "q_time_sec": 89.250},
+        {"driver": "OCO", "team": "Haas",           "grid_position": 15, "q_time_sec": 89.454},
+        {"driver": "ALB", "team": "Williams",       "grid_position": 16, "q_time_sec": 89.628},
+        {"driver": "LIN", "team": "Racing Bulls",   "grid_position": 17, "q_time_sec": 89.278},
+        {"driver": "ALO", "team": "Aston Martin",   "grid_position": 18, "q_time_sec": 90.243},
+        {"driver": "STR", "team": "Aston Martin",   "grid_position": 19, "q_time_sec": 90.309},
+        {"driver": "BOT", "team": "Cadillac",       "grid_position": 20, "q_time_sec": 90.774},
+        {"driver": "PER", "team": "Cadillac",       "grid_position": 21, "q_time_sec": 91.112},
+        {"driver": "BOR", "team": "Audi",           "grid_position": 22, "q_time_sec": 92.882},
+    ],
+    "actual_podium": ["ANT", "NOR", "PIA"],
+},
+{
+    "circuit": "Canada",
+    "round": 5,
+    "weather": {
+        "air_temp": 12,
+        "track_temp": 18,
+        "humidity": 85,
+        "wind_speed": 3,
+        "rainfall": 1,
+    },
+    "qualifying": [
+        {"driver": "RUS", "team": "Mercedes",      "grid_position": 1,  "q_time_sec": 72.578},
+        {"driver": "ANT", "team": "Mercedes",      "grid_position": 2,  "q_time_sec": 72.646},
+        {"driver": "NOR", "team": "McLaren",        "grid_position": 3,  "q_time_sec": 72.729},
+        {"driver": "PIA", "team": "McLaren",        "grid_position": 4,  "q_time_sec": 72.781},
+        {"driver": "HAM", "team": "Ferrari",        "grid_position": 5,  "q_time_sec": 72.868},
+        {"driver": "VER", "team": "Red Bull",       "grid_position": 6,  "q_time_sec": 72.907},
+        {"driver": "HAD", "team": "Red Bull",       "grid_position": 7,  "q_time_sec": 72.935},
+        {"driver": "LEC", "team": "Ferrari",        "grid_position": 8,  "q_time_sec": 72.976},
+        {"driver": "LIN", "team": "Racing Bulls",   "grid_position": 9,  "q_time_sec": 73.280},
+        {"driver": "COL", "team": "Alpine",         "grid_position": 10, "q_time_sec": 73.688},
+        {"driver": "HUL", "team": "Audi",           "grid_position": 11, "q_time_sec": 73.717},
+        {"driver": "LAW", "team": "Racing Bulls",   "grid_position": 12, "q_time_sec": 73.728},
+        {"driver": "BOR", "team": "Audi",           "grid_position": 13, "q_time_sec": 73.902},
+        {"driver": "GAS", "team": "Alpine",         "grid_position": 14, "q_time_sec": 74.018},
+        {"driver": "SAI", "team": "Williams",       "grid_position": 15, "q_time_sec": 74.104},
+        {"driver": "BEA", "team": "Haas",           "grid_position": 16, "q_time_sec": 74.247},
+        {"driver": "OCO", "team": "Haas",           "grid_position": 17, "q_time_sec": 74.317},
+        {"driver": "ALB", "team": "Williams",       "grid_position": 18, "q_time_sec": 74.323},
+        {"driver": "ALO", "team": "Aston Martin",   "grid_position": 19, "q_time_sec": 74.668},
+        {"driver": "PER", "team": "Cadillac",       "grid_position": 20, "q_time_sec": 74.901},
+        {"driver": "STR", "team": "Aston Martin",   "grid_position": 21, "q_time_sec": 75.667},
+        {"driver": "BOT", "team": "Cadillac",       "grid_position": 22, "q_time_sec": 75.744},
+    ],
+    "actual_podium": ["ANT", "HAM", "VER"],
+},
 ]
 
 if __name__ == "__main__":
