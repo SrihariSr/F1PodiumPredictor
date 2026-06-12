@@ -426,7 +426,7 @@ def predict_race_results(model, scaler, race_features: pd.DataFrame, device, cir
 
 def print_predictions(results: pd.DataFrame, circuit_name: str):
 
-    print(f"\n 🏎️   {circuit_name} Grand Prix — Podium Predictions")
+    print(f"\n{circuit_name} Grand Prix — Podium Predictions")
     print(f"  {'─' * 65}")
     print(f"  {'Rank':>4}  {'Driver':<6}  {'Team':<16}  {'Grid':>4}  "
           f"{'Prob':>7}  {'Podium?':>7}")
@@ -442,7 +442,7 @@ def print_predictions(results: pd.DataFrame, circuit_name: str):
         # Visual indicator
         if rank <= 3:
             indicator = "🥇🥈🥉"[rank - 1]
-            podium_str = f"  {indicator}"
+            podium_str = f"{indicator}"
         elif row["Predicted"] == 1:
             podium_str = ""
         else:
@@ -562,11 +562,11 @@ RACES_2026 = [
     "circuit": "Miami",
     "round": 4,
     "weather": {
-        "air_temp": 26,     # current 26°C, high of 27°C
-        "track_temp": 35,   # lower than yesterday due to cloud cover
-        "humidity": 79,     # current reading from AccuWeather
-        "wind_speed": 1.3,  # 3 mph = 1.3 m/s (light winds)
-        "rainfall": 1,      # 90% chance of rain, keep at 1
+        "air_temp": 26,
+        "track_temp": 35,
+        "humidity": 79,  
+        "wind_speed": 1.3,
+        "rainfall": 1,
     },
     "qualifying": [
         {"driver": "ANT", "team": "Mercedes",      "grid_position": 1,  "q_time_sec": 87.798},
@@ -629,6 +629,42 @@ RACES_2026 = [
         {"driver": "BOT", "team": "Cadillac",       "grid_position": 22, "q_time_sec": 75.744},
     ],
     "actual_podium": ["ANT", "HAM", "VER"],
+},
+{
+    "circuit": "Monaco",
+    "round": 6,
+    "weather": {
+        "air_temp": 21,
+        "track_temp": 40,
+        "humidity": 55,
+        "wind_speed": 2,
+        "rainfall": 0,
+    },
+    "qualifying": [
+        {"driver": "ANT", "team": "Mercedes",      "grid_position": 1,  "q_time_sec": 72.051},
+        {"driver": "VER", "team": "Red Bull",       "grid_position": 2,  "q_time_sec": 72.094},
+        {"driver": "HAM", "team": "Ferrari",        "grid_position": 3,  "q_time_sec": 72.264},
+        {"driver": "LEC", "team": "Ferrari",        "grid_position": 4,  "q_time_sec": 72.351},
+        {"driver": "HAD", "team": "Red Bull",       "grid_position": 5,  "q_time_sec": 72.401},
+        {"driver": "RUS", "team": "Mercedes",       "grid_position": 6,  "q_time_sec": 72.501},
+        {"driver": "PIA", "team": "McLaren",        "grid_position": 7,  "q_time_sec": 72.601},
+        {"driver": "NOR", "team": "McLaren",        "grid_position": 8,  "q_time_sec": 72.651},
+        {"driver": "GAS", "team": "Alpine",         "grid_position": 9,  "q_time_sec": 72.901},
+        {"driver": "LAW", "team": "Racing Bulls",   "grid_position": 10, "q_time_sec": 73.001},
+        {"driver": "ALB", "team": "Williams",       "grid_position": 11, "q_time_sec": 73.101},
+        {"driver": "SAI", "team": "Williams",       "grid_position": 12, "q_time_sec": 73.151},
+        {"driver": "HUL", "team": "Audi",           "grid_position": 13, "q_time_sec": 73.201},
+        {"driver": "COL", "team": "Alpine",         "grid_position": 14, "q_time_sec": 73.301},
+        {"driver": "LIN", "team": "Racing Bulls",   "grid_position": 15, "q_time_sec": 73.401},
+        {"driver": "BOR", "team": "Audi",           "grid_position": 16, "q_time_sec": 73.551},
+        {"driver": "OCO", "team": "Haas",           "grid_position": 17, "q_time_sec": 73.601},
+        {"driver": "PER", "team": "Cadillac",       "grid_position": 18, "q_time_sec": 73.751},
+        {"driver": "BEA", "team": "Haas",           "grid_position": 19, "q_time_sec": 73.901},
+        {"driver": "BOT", "team": "Cadillac",       "grid_position": 20, "q_time_sec": 74.051},
+        {"driver": "ALO", "team": "Aston Martin",   "grid_position": 21, "q_time_sec": 74.151},
+        {"driver": "STR", "team": "Aston Martin",   "grid_position": 22, "q_time_sec": 74.251},
+    ],
+    "actual_podium": ["ANT", "HAM", "GAS"],
 },
 ]
 
@@ -738,7 +774,7 @@ if __name__ == "__main__":
 
     # Driver rankings
     print(f"\n{'=' * 60}")
-    print(f"  📊 Driver Podium Probability Rankings (2026 so far)")
+    print(f"Driver Podium Probability Rankings (2026 so far)")
     print(f"{'=' * 60}")
  
     summary = all_preds.groupby("Driver").agg(

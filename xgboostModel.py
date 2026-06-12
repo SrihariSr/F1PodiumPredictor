@@ -110,19 +110,19 @@ if __name__ == "__main__":
     print(f"{'=' * 60}")
 
     print(f"\n  Validation Set:")
-    print(f"    Accuracy:  {val_metrics['accuracy']:.1%}")
-    print(f"    Precision: {val_metrics['precision']:.1%}")
-    print(f"    Recall:    {val_metrics['recall']:.1%}")
-    print(f"    F1 Score:  {val_metrics['f1']:.3f}")
-    print(f"    TP: {val_metrics['tp']}  FP: {val_metrics['fp']}  "
+    print(f"Accuracy:  {val_metrics['accuracy']:.1%}")
+    print(f"Precision: {val_metrics['precision']:.1%}")
+    print(f"Recall:    {val_metrics['recall']:.1%}")
+    print(f"F1 Score:  {val_metrics['f1']:.3f}")
+    print(f"TP: {val_metrics['tp']}  FP: {val_metrics['fp']}  "
           f"FN: {val_metrics['fn']}  TN: {val_metrics['tn']}")
 
     print(f"\n  Test Set:")
-    print(f"    Accuracy:  {test_metrics['accuracy']:.1%}")
-    print(f"    Precision: {test_metrics['precision']:.1%}")
-    print(f"    Recall:    {test_metrics['recall']:.1%}")
-    print(f"    F1 Score:  {test_metrics['f1']:.3f}")
-    print(f"    TP: {test_metrics['tp']}  FP: {test_metrics['fp']}  "
+    print(f"Accuracy:  {test_metrics['accuracy']:.1%}")
+    print(f"Precision: {test_metrics['precision']:.1%}")
+    print(f"Recall:    {test_metrics['recall']:.1%}")
+    print(f"F1 Score:  {test_metrics['f1']:.3f}")
+    print(f"TP: {test_metrics['tp']}  FP: {test_metrics['fp']}  "
           f"FN: {test_metrics['fn']}  TN: {test_metrics['tn']}")
 
     # ── Feature Importance ────────────────────────────────────────────────
@@ -183,7 +183,7 @@ if __name__ == "__main__":
         results = features.sort_values("PodiumProb", ascending=False)
 
         # Print predictions
-        print(f"\n  🏁 {circuit} Grand Prix — Podium Predictions")
+        print(f"\n\n\n\n\n\n\n\n\n\n{circuit} Grand Prix")
         print(f"  {'─' * 65}")
         print(f"  {'Rank':>4}  {'Driver':<6}  {'Team':<18}  {'Grid':<6}  "
               f"{'Prob':>6}  Podium?")
@@ -194,17 +194,16 @@ if __name__ == "__main__":
             bar_len = int(prob * 20)
             bar = "█" * bar_len + "░" * (20 - bar_len)
 
-            medal = ""
-            if i < 3 and prob > 0:
-                medal = ["🥇", "🥈", "🥉"][i]
 
-            print(f"  {i+1:4d}  {row['Driver']:<6s}  {row['Team']:<18s}  "
-                  f"P{int(row['GridPosition']):<5d}  {prob:5.1%}  {bar}  {medal}")
+            print(f"{i+1:4d}  {row['Driver']:<6s}  {row['Team']:<18s}  "
+                  f"P{int(row['GridPosition']):<5d}  {prob:5.1%}  {bar}")
 
         predicted_top3 = results.head(3)["Driver"].tolist()
+        winner = results.head(1)["Driver"].tolist()
         num_predicted = (results["PodiumProb"] >= 0.5).sum()
-        print(f"\n  Predicted podium finishers: {num_predicted}")
-        print(f"  Most likely podium: {', '.join(predicted_top3)}")
+        # print(f"\n  Predicted podium finishers: {num_predicted}")
+        # print(f"  Most likely podium: {', '.join(predicted_top3)}")
+        print(f"\n  Predicted Winner: {''.join(winner)}")
 
         if actual_podium:
             correct = [d for d in predicted_top3 if d in actual_podium]
@@ -248,7 +247,7 @@ if __name__ == "__main__":
             total_podium_spots += 3
             total_correct += correct
 
-            print(f"  Round {race['round']:2d} {circuit:15s}  "
+            print(f"Round {race['round']:2d} {circuit:15s}  "
                   f"Predicted: {', '.join(predicted_top3):20s}  "
                   f"Actual: {', '.join(actual):20s}  "
                   f"Score: {correct}/3")
@@ -260,7 +259,7 @@ if __name__ == "__main__":
 
     # ── Driver Rankings ───────────────────────────────────────────────────
     print(f"\n{'=' * 60}")
-    print(f"  📊 Driver Podium Probability Rankings (2026 — XGBoost)")
+    print(f"Driver Podium Probability Rankings (2026 — XGBoost)")
     print(f"{'=' * 60}")
 
     summary = all_preds.groupby("Driver").agg(
@@ -275,7 +274,7 @@ if __name__ == "__main__":
     print(f"  {'─' * 50}")
 
     for driver, row in summary.iterrows():
-        print(f"  {driver:<6}  {row['AvgPodiumProb']:7.1%}"
-              f"  {row['MaxPodiumProb']:7.1%}"
-              f"  {int(row['PredictedPodiums']):>13}"
-              f"  {int(row['RacesEntered']):>5}")
+        print(f"{driver:<6}  {row['AvgPodiumProb']:7.1%}"
+              f"{row['MaxPodiumProb']:7.1%}"
+              f"{int(row['PredictedPodiums']):>13}"
+              f"{int(row['RacesEntered']):>5}")
