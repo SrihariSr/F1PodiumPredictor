@@ -426,7 +426,7 @@ def predict_race_results(model, scaler, race_features: pd.DataFrame, device, cir
 
 def print_predictions(results: pd.DataFrame, circuit_name: str):
 
-    print(f"\n{circuit_name} Grand Prix — Podium Predictions")
+    print(f"\n{circuit_name} Grand Prix Podium Predictions")
     print(f"  {'─' * 65}")
     print(f"  {'Rank':>4}  {'Driver':<6}  {'Team':<16}  {'Grid':>4}  "
           f"{'Prob':>7}  {'Podium?':>7}")
@@ -439,21 +439,12 @@ def print_predictions(results: pd.DataFrame, circuit_name: str):
         grid = int(row["GridPosition"])
         prob = row["PodiumProb%"]
  
-        # Visual indicator
-        if rank <= 3:
-            indicator = "🥇🥈🥉"[rank - 1]
-            podium_str = f"{indicator}"
-        elif row["Predicted"] == 1:
-            podium_str = ""
-        else:
-            podium_str = ""
- 
         # Probability bar
         bar_len = int(prob / 100 * 20)
         bar = "█" * bar_len + "░" * (20 - bar_len)
  
-        print(f"  {rank:4d}  {driver:<6}  {team:<16}  P{grid:<3d}  "
-              f"{prob:6.1f}%  {bar} {podium_str}")
+        print(f"{rank:4d}  {driver:<6}  {team:<16}  P{grid:<3d}  "
+              f"{prob:6.1f}%  {bar}")
  
     # Summary
     predicted_podiums = results[results["Predicted"] == 1]
@@ -666,6 +657,42 @@ RACES_2026 = [
     ],
     "actual_podium": ["ANT", "HAM", "GAS"],
 },
+{
+    "circuit": "Spain",
+    "round": 7,
+    "weather": {
+        "air_temp": 32,
+        "track_temp": 56,
+        "humidity": 30,
+        "wind_speed": 4,
+        "rainfall": 0,
+    },
+    "qualifying": [
+        {"driver": "RUS", "team": "Mercedes",      "grid_position": 1,  "q_time_sec": 74.679},
+        {"driver": "HAM", "team": "Ferrari",        "grid_position": 2,  "q_time_sec": 74.743},
+        {"driver": "ANT", "team": "Mercedes",       "grid_position": 3,  "q_time_sec": 74.998},
+        {"driver": "NOR", "team": "McLaren",        "grid_position": 4,  "q_time_sec": 75.001},
+        {"driver": "VER", "team": "Red Bull",       "grid_position": 5,  "q_time_sec": 75.021},
+        {"driver": "HAD", "team": "Red Bull",       "grid_position": 6,  "q_time_sec": 75.077},
+        {"driver": "PIA", "team": "McLaren",        "grid_position": 7,  "q_time_sec": 75.090},
+        {"driver": "LAW", "team": "Racing Bulls",   "grid_position": 8,  "q_time_sec": 76.542},
+        {"driver": "HUL", "team": "Audi",           "grid_position": 9,  "q_time_sec": 76.657},
+        {"driver": "LEC", "team": "Ferrari",        "grid_position": 10, "q_time_sec": 75.400},
+        {"driver": "LIN", "team": "Racing Bulls",   "grid_position": 11, "q_time_sec": 75.840},
+        {"driver": "BOR", "team": "Audi",           "grid_position": 12, "q_time_sec": 76.001},
+        {"driver": "COL", "team": "Alpine",         "grid_position": 13, "q_time_sec": 76.191},
+        {"driver": "GAS", "team": "Alpine",         "grid_position": 14, "q_time_sec": 76.261},
+        {"driver": "BEA", "team": "Haas",           "grid_position": 15, "q_time_sec": 76.389},
+        {"driver": "SAI", "team": "Williams",       "grid_position": 16, "q_time_sec": 77.827},
+        {"driver": "OCO", "team": "Haas",           "grid_position": 17, "q_time_sec": 77.073},
+        {"driver": "ALB", "team": "Williams",       "grid_position": 18, "q_time_sec": 77.424},
+        {"driver": "PER", "team": "Cadillac",       "grid_position": 19, "q_time_sec": 77.545},
+        {"driver": "BOT", "team": "Cadillac",       "grid_position": 20, "q_time_sec": 77.757},
+        {"driver": "STR", "team": "Aston Martin",   "grid_position": 21, "q_time_sec": 78.758},
+        {"driver": "ALO", "team": "Aston Martin",   "grid_position": 22, "q_time_sec": 78.815},
+    ],
+    "actual_podium": ["HAM", "RUS", "NOR"],
+},
 ]
 
 if __name__ == "__main__":
@@ -724,11 +751,11 @@ if __name__ == "__main__":
             correct_predictions = [i for i in predicted_podium if i in actual_podium]
             missed = [i for i in actual_podium if i not in predicted_podium]
         
-            print(f"\nActual podium:    {', '.join(actual_podium)}")
-            print(f"Predicted top 3:  {', '.join(predicted_podium)}")
-            print(f"Correct:          {len(correct_predictions)}/3 ({', '.join(correct_predictions) if correct_predictions else 'none'})")
+            print(f"\nActual podium: {', '.join(actual_podium)}")
+            print(f"Predicted top 3: {', '.join(predicted_podium)}")
+            print(f"Correct:         {len(correct_predictions)}/3 ({', '.join(correct_predictions) if correct_predictions else 'none'})")
             if missed:
-                print(f"Missed:           {', '.join(missed)}")
+                print(f"Missed: {', '.join(missed)}")
  
         # Store for CSV
         results["Circuit"] = circuit
@@ -741,7 +768,7 @@ if __name__ == "__main__":
     all_preds.to_csv(output_path, index=False)
     print(f"\nAll predictions saved to {output_path}")
 
-        # ── Season accuracy so far ──
+        # Season accuracy so far
     print(f"\n{'-' * 60}")
     print(f"2026 Season Prediction Accuracy (Neural Network)")
     print(f"{'-' * 60}")
@@ -773,9 +800,9 @@ if __name__ == "__main__":
               f"finishers correctly predicted ({accuracy:.0%})")
 
     # Driver rankings
-    print(f"\n{'=' * 60}")
+    print(f"\n{'-' * 70}")
     print(f"Driver Podium Probability Rankings (2026 so far)")
-    print(f"{'=' * 60}")
+    print(f"{'-' * 70}")
  
     summary = all_preds.groupby("Driver").agg(
         AvgPodiumProb=("PodiumProb", "mean"),

@@ -23,7 +23,6 @@ FEATURE_COLUMNS = [
 
 TARGET_COL = "IsPodium"
 
-
 # Metrics
 def compute_metrics(y_true, y_pred_probs, threshold=0.5):
     y_pred = (y_pred_probs >= threshold).astype(int)
@@ -60,7 +59,7 @@ if __name__ == "__main__":
     print(f"Train: {len(X_train)} samples")
     print(f"Val:   {len(X_val)} samples")
     print(f"Test:  {len(X_test)} samples")
-    print(f"Podium ratio — train: {y_train.mean():.1%}, "
+    print(f"Podium ratio train: {y_train.mean():.1%}, "
           f"val: {y_val.mean():.1%}, test: {y_test.mean():.1%}")
 
     # Class imbalance weight
@@ -257,10 +256,10 @@ if __name__ == "__main__":
         print(f"\n  Overall: {total_correct}/{total_podium_spots} podium "
               f"finishers correctly predicted ({accuracy:.0%})")
 
-    # ── Driver Rankings ───────────────────────────────────────────────────
-    print(f"\n{'=' * 60}")
-    print(f"Driver Podium Probability Rankings (2026 — XGBoost)")
-    print(f"{'=' * 60}")
+    # Driver Rankings
+    print(f"\n{'-' * 60}")
+    print(f"Driver Podium Probability Rankings 2026 (XGBoost)")
+    print(f"{'-' * 60}")
 
     summary = all_preds.groupby("Driver").agg(
         AvgPodiumProb=("PodiumProb", "mean"),
@@ -270,8 +269,8 @@ if __name__ == "__main__":
     ).sort_values("AvgPodiumProb", ascending=False)
 
     print(f"\n  {'Driver':<6}  {'Avg Prob':>8}  {'Max Prob':>8}"
-          f"  {'Pred. Podiums':>13}  {'Races':>5}")
-    print(f"  {'─' * 50}")
+          f"{'Pred. Podiums':>13}  {'Races':>5}")
+    print(f"{'─' * 50}")
 
     for driver, row in summary.iterrows():
         print(f"{driver:<6}  {row['AvgPodiumProb']:7.1%}"
